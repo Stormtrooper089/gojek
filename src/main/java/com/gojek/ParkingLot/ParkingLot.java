@@ -12,14 +12,14 @@ public class ParkingLot {
 	private Car car;
 	int MAX_SIZE = 0;
 
-	private static ArrayList<Integer> reservedSlots = new ArrayList<>();
-	private static ArrayList<Integer> unReservedSlots = new ArrayList<>();
-	private static ArrayList<Car> parkingLotDatabase = new ArrayList<>();
+	public static ArrayList<Integer> reservedSlots = new ArrayList<>();
+	public static ArrayList<Integer> unReservedSlots = new ArrayList<>();
+	public static ArrayList<Car> parkingLotDatabase = new ArrayList<>();
 
 	public static BiConsumer<String, String> CREATE_PARKING_LOT = (i, v) -> {
 		try {
 			int size = Integer.parseInt(i);
-			if (reservedSlots.size() != 0 && unReservedSlots.size() !=0) {
+			if (reservedSlots.size() != 0 && unReservedSlots.size() != 0) {
 				System.out.println("The Parking lot is already created . Please proceed with the functions");
 			} else {
 				for (int j = 1; j <= size; j++) {
@@ -85,7 +85,6 @@ public class ParkingLot {
 	};
 
 	public static BiConsumer<String, String> SLOT_NUMBERS_FOR_CARS_WITH_COLOUR = (i, v) -> {
-
 		List<String> collect = parkingLotDatabase.stream().filter(e -> e.getColorOfTheCar().equalsIgnoreCase(i))
 				.map(e -> e.getSlotNumber()).map(Object::toString).collect(Collectors.toList());
 		String joined = String.join(", ", collect);
