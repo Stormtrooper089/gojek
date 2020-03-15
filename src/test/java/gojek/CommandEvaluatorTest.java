@@ -56,13 +56,6 @@ public class CommandEvaluatorTest extends TestCase {
 		assertEquals(0, ParkingLot.reservedSlots.size());
 		assertEquals(5, ParkingLot.unReservedSlots.size());
 
-		// Not working perfectly for this scenario
-		/*
-		 * CommandEvaluator.consume("create_parking_lot 5");
-		 * assertEquals(5,ParkingLot.unReservedSlots.size());
-		 * assertEquals(0,ParkingLot.reservedSlots.size());
-		 */
-
 		CommandEvaluator.consume("park KA-01-HH-1234 White");
 		assertEquals(4, ParkingLot.unReservedSlots.size());
 		assertEquals(1, ParkingLot.reservedSlots.size());
