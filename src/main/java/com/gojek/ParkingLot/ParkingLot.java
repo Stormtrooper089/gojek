@@ -18,14 +18,12 @@ public class ParkingLot {
 
 
     public static BiConsumer<String, String> CREATE_PARKING_LOT = (i, v) -> {
-        //System.out.println("the value of i  is   "  + i);
         int size = Integer.parseInt(i);
         if(reservedSlots.size() != 0 ){
             System.out.println("The Parking lot is already created . Please proceed with the functions");
         }else{
             for(int j=1;j <= size ; j++){
                 unReservedSlots.add(j);
-                //System.out.println("The parking lot created the entry for  the number  "  +  j );
             }
         }
     };
@@ -44,15 +42,12 @@ public class ParkingLot {
 
             System.out.println("Allocated slot number: " + unReservedSlots.get(0));
             unReservedSlots.remove(0);
-            //System.out.println(reservedSlots  + "   " +  unReservedSlots);
-
         }
     };
 
     public static BiConsumer<String, String> LEAVE = (i, v) -> {
 
         int numbertoRemove = Integer.parseInt(i);
-        //System.out.println(reservedSlots);
         if( reservedSlots.contains(numbertoRemove)){
 
             unReservedSlots.add(numbertoRemove);
@@ -75,7 +70,6 @@ public class ParkingLot {
 
             parkingLotDatabase.remove(carToRemove);
             reservedSlots.remove(reservedSlots.indexOf(numbertoRemove));
-            //System.out.println(reservedSlots  + "   " +  unReservedSlots);
         }else{
             System.out.println("The car was not in the parking");
         }
