@@ -115,6 +115,7 @@ public class ParkingLot {
 	};
 
 	public static BiConsumer<String, String> DEFAULT_ = (i, v) -> {
+		System.out.println("Not a valid command");
 	};
 
 }
