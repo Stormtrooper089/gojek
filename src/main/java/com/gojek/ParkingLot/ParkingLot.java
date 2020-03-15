@@ -19,7 +19,7 @@ public class ParkingLot {
 	public static BiConsumer<String, String> CREATE_PARKING_LOT = (i, v) -> {
 		try {
 			int size = Integer.parseInt(i);
-			if (reservedSlots.size() != 0) {
+			if (reservedSlots.size() != 0 && unReservedSlots.size() !=0) {
 				System.out.println("The Parking lot is already created . Please proceed with the functions");
 			} else {
 				for (int j = 1; j <= size; j++) {
