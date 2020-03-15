@@ -21,7 +21,6 @@ public class CommandEvaluator {
 
     public static void consume(String input) {
         String [] arr = input.split(" ");
-        //System.out.println( " the command entered is  "  +  input);
         String command = arr.length > 0 ? arr[0] : "";
         String firstArg = arr.length > 1 ? arr[1] : "";
         String secondArg = arr.length > 2 ? arr[2] : "";

@@ -18,14 +18,19 @@ public class ParkingLot {
 
 
     public static BiConsumer<String, String> CREATE_PARKING_LOT = (i, v) -> {
-        int size = Integer.parseInt(i);
-        if(reservedSlots.size() != 0 ){
-            System.out.println("The Parking lot is already created . Please proceed with the functions");
-        }else{
-            for(int j=1;j <= size ; j++){
-                unReservedSlots.add(j);
+    	try {
+    		int size = Integer.parseInt(i);
+            if(reservedSlots.size() != 0 ){
+                System.out.println("The Parking lot is already created . Please proceed with the functions");
+            }else{
+                for(int j=1;j <= size ; j++){
+                    unReservedSlots.add(j);
+                }
             }
-        }
+    	}catch(Exception e) {
+    		System.out.println("The number of parking places to be created is not the correct number");
+    	}
+        
     };
 
     public static BiConsumer<String, String> PARK = (i, v) -> {
@@ -47,33 +52,38 @@ public class ParkingLot {
 
     public static BiConsumer<String, String> LEAVE = (i, v) -> {
 
-        int numbertoRemove = Integer.parseInt(i);
-        if( reservedSlots.contains(numbertoRemove)){
+    	try {
+    		int numbertoRemove = Integer.parseInt(i);
+            if( reservedSlots.contains(numbertoRemove)){
 
-            unReservedSlots.add(numbertoRemove);
-            unReservedSlots.sort(new Comparator<Integer>() {
-                @Override
-                public int compare(Integer o1, Integer o2) {
-                    return 0;
-                }
-            });
+                unReservedSlots.add(numbertoRemove);
+                unReservedSlots.sort(new Comparator<Integer>() {
+                    @Override
+                    public int compare(Integer o1, Integer o2) {
+                        return 0;
+                    }
+                });
 
-            Car carToRemove = null;
-            for (Car car:
-                    parkingLotDatabase) {
-                if(car.getSlotNumber() == numbertoRemove){
-                    carToRemove = car;
-                    break;
+                Car carToRemove = null;
+                for (Car car:
+                        parkingLotDatabase) {
+                    if(car.getSlotNumber() == numbertoRemove){
+                        carToRemove = car;
+                        break;
+                    }
                 }
+                System.out.println("Slot number "+ numbertoRemove +" is free");
+
+                parkingLotDatabase.remove(carToRemove);
+                reservedSlots.remove(reservedSlots.indexOf(numbertoRemove));
+            }else{
+                System.out.println("The car was not in the parking");
             }
-            System.out.println("Slot number "+ numbertoRemove +" is free");
 
-            parkingLotDatabase.remove(carToRemove);
-            reservedSlots.remove(reservedSlots.indexOf(numbertoRemove));
-        }else{
-            System.out.println("The car was not in the parking");
-        }
-
+    	}catch(Exception e) {
+    		System.out.println("The car numeber is not the correct integer");
+    	}
+        
 
     };
 
