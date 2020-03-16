@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.util.StringUtils;
 
 import com.gojek.CommandServices.CommandEvaluator;
 
@@ -26,6 +27,7 @@ public class GoJekAppMain {
 		System.out.println("Press 2 for file based");
 
 		int choice = scanner.nextInt();
+		
 		switch (choice) {
 		case 1:
 			System.out.println("Please enter Exit to quit or else proceed with command");
@@ -34,8 +36,11 @@ public class GoJekAppMain {
 				if (enteredCommand.equalsIgnoreCase("Exit")) {
 					return;
 				} else {
-					System.out.println("The command entered is " + enteredCommand);
-					CommandEvaluator.consume(enteredCommand);
+					//System.out.println("The command entered is " + enteredCommand);
+					if(!StringUtils.isEmpty(enteredCommand)) {
+						CommandEvaluator.consume(enteredCommand);
+					}
+					
 				}
 			}
 			break;

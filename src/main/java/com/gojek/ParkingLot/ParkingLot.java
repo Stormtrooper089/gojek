@@ -25,6 +25,7 @@ public class ParkingLot {
 				for (int j = 1; j <= size; j++) {
 					unReservedSlots.add(j);
 				}
+				System.out.println("Created a parking lot with "+size+" slots");
 			}
 		} catch (Exception e) {
 			System.out.println("The number of parking places to be created is not the correct number");
@@ -108,9 +109,13 @@ public class ParkingLot {
 	};
 
 	public static BiConsumer<String, String> STATUS = (i, v) -> {
-		for (Car entry : parkingLotDatabase) {
-			System.out.println(entry.toString());
+		if(parkingLotDatabase.size() != 0) {
+			System.out.println(String.format( "%10s%25s%40s", "Slot No.", "Registration No","Colour"));
+			for (Car entry : parkingLotDatabase) {
+				System.out.println(String.format( "%10s%25s%40s", entry.getSlotNumber(), entry.getRegistrationNo(),entry.getColorOfTheCar() ));
+			}
 		}
+		
 	};
 
 	public static BiConsumer<String, String> DEFAULT_ = (i, v) -> {
