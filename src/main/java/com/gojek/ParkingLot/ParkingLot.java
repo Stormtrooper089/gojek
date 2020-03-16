@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import org.springframework.util.StringUtils;
+
 public class ParkingLot {
 
 	private Car car;
@@ -89,7 +91,11 @@ public class ParkingLot {
 		List<String> collect = parkingLotDatabase.stream().filter(e -> e.getColorOfTheCar().equalsIgnoreCase(i))
 				.map(e -> e.getSlotNumber()).map(Object::toString).collect(Collectors.toList());
 		String joined = String.join(", ", collect);
-		System.out.println(joined);
+		if(!StringUtils.isEmpty(joined)) {
+			System.out.println(joined);
+		}else {
+			System.out.println("No match found");
+		}
 	};
 
 	public static BiConsumer<String, String> SLOT_NUMBER_FOR_REGISTRATION_NUMBER = (i, v) -> {
@@ -97,7 +103,11 @@ public class ParkingLot {
 		List<String> collect = parkingLotDatabase.stream().filter(e -> e.getRegistrationNo().equalsIgnoreCase(i))
 				.map(e -> e.getSlotNumber()).map(Object::toString).collect(Collectors.toList());
 		String joined = String.join(", ", collect);
-		System.out.println(joined);
+		if(!StringUtils.isEmpty(joined)) {
+			System.out.println(joined);
+		}else {
+			System.out.println("No match found");
+		}
 	};
 
 	public static BiConsumer<String, String> REGISTRATION_NUMBERS_FOR_CARS_WITH_COLOUR = (i, v) -> {
@@ -105,7 +115,12 @@ public class ParkingLot {
 		List<String> collect = parkingLotDatabase.stream().filter(e -> e.getColorOfTheCar().equalsIgnoreCase(i))
 				.map(e -> e.getRegistrationNo()).collect(Collectors.toList());
 		String joined = String.join(", ", collect);
-		System.out.println(joined);
+		if(!StringUtils.isEmpty(joined)) {
+			System.out.println(joined);
+		}else {
+			System.out.println("No match found");
+		}
+		
 	};
 
 	public static BiConsumer<String, String> STATUS = (i, v) -> {
@@ -114,6 +129,8 @@ public class ParkingLot {
 			for (Car entry : parkingLotDatabase) {
 				System.out.println(String.format( "%10s%25s%40s", entry.getSlotNumber(), entry.getRegistrationNo(),entry.getColorOfTheCar() ));
 			}
+		}else {
+			System.out.println("There are no car parks at this moment");
 		}
 		
 	};
